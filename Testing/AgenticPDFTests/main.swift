@@ -368,6 +368,94 @@ struct AgenticPDFTests {
 
         try testCompleteLineEvidence()
 
+        guard PDF.Tools.VerifyTextEvidence.definition.identifier.rawValue == "pdf_verify_text_evidence" else {
+            throw Failure.assertion("verify evidence tool identifier")
+        }
+        guard let checkedLine = inspected.lines.first,
+              let checkedReference = checkedLine.reference,
+              let checkedText = checkedLine.text else {
+            throw Failure.assertion("verify evidence line fixture")
+        }
+        let checkedQuote = "SYNTHETIC"
+        let checkedOffset = (checkedText as NSString).range(of: checkedQuote, options: .literal)
+        guard checkedOffset.location != NSNotFound else {
+            throw Failure.assertion("verify evidence quote fixture")
+        }
+        let checkedClaim = PDF.Tools.VerifyTextEvidence.Input.Claim(
+            lineID: checkedLine.id,
+            lineReference: checkedReference,
+            quote: checkedQuote,
+            startUTF16: checkedReference.startUTF16 + checkedOffset.location,
+            endUTF16: checkedReference.startUTF16 + checkedOffset.location + checkedOffset.length
+        )
+        let verifier = PDF.Tools.VerifyTextEvidence()
+        let checkedInput = PDF.Tools.VerifyTextEvidence.Input(
+            path: "synthetic.pdf",
+            expectedFingerprint: summary.sourceFingerprint,
+            claims: [checkedClaim]
+        )
+        let checkedPreflight = try await verifier.preflight(checkedInput, in: context)
+        guard checkedPreflight.risk == .observe else {
+            throw Failure.assertion("verify evidence read preflight")
+        }
+        let checked = try await verifier.call(checkedInput, in: context)
+        guard checked.sourceFingerprint == summary.sourceFingerprint,
+              checked.verified == [checkedClaim] else {
+            throw Failure.assertion("source-resolved quote")
+        }
+        let wrongClaim = PDF.Tools.VerifyTextEvidence.Input.Claim(
+            lineID: checkedLine.id,
+            lineReference: checkedReference,
+            quote: checkedQuote,
+            startUTF16: checkedClaim.startUTF16 + 1,
+            endUTF16: checkedClaim.endUTF16 + 1
+        )
+        var rejectedWrongQuote = false
+        do {
+            _ = try await verifier.call(.init(
+                path: "synthetic.pdf", expectedFingerprint: summary.sourceFingerprint,
+                claims: [wrongClaim]
+            ), in: context)
+        } catch PDF.Tools.VerifyTextEvidence.Failure.quote_mismatch {
+            rejectedWrongQuote = true
+        }
+        guard rejectedWrongQuote else { throw Failure.assertion("incorrect quote span refused") }
+        let fakeLine = PDF.Tools.VerifyTextEvidence.Input.Claim(
+            lineID: "fabricated-line",
+            lineReference: checkedReference,
+            quote: checkedQuote,
+            startUTF16: checkedClaim.startUTF16,
+            endUTF16: checkedClaim.endUTF16
+        )
+        var rejectedFakeLine = false
+        do {
+            _ = try await verifier.call(.init(
+                path: "synthetic.pdf", expectedFingerprint: summary.sourceFingerprint,
+                claims: [fakeLine]
+            ), in: context)
+        } catch PDF.Tools.VerifyTextEvidence.Failure.missing_line {
+            rejectedFakeLine = true
+        }
+        guard rejectedFakeLine else { throw Failure.assertion("invented line refused") }
+        var rejectedMissingRead = false
+        do {
+            let insufficient = try fixtureContext(root: directory, capabilities: [.scan])
+            _ = try await verifier.preflight(checkedInput, in: insufficient)
+        } catch {
+            rejectedMissingRead = true
+        }
+        guard rejectedMissingRead else { throw Failure.assertion("verification requires read authorization") }
+        try makePDF(pageCount: 2).write(to: path, options: .atomic)
+        var rejectedStaleSource = false
+        do {
+            _ = try await verifier.call(checkedInput, in: context)
+        } catch PDF.Tools.VerifyTextEvidence.Failure.source_mismatch {
+            rejectedStaleSource = true
+        }
+        guard rejectedStaleSource else {
+            throw Failure.assertion("changed PDF source refused")
+        }
+
         print("t_agentic_pdf: passed")
     }
 
