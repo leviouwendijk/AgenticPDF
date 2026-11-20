@@ -12,7 +12,7 @@ let package = Package(
         .package(url: "https://github.com/leviouwendijk/PDF.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Workspace.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Path.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/IO.git", branch: "master"),,
+        .package(url: "https://github.com/leviouwendijk/IO.git", branch: "master"),
         .package(path: ".."),
     ],
     targets: [
