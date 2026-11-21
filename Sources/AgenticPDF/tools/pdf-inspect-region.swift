@@ -6,7 +6,7 @@ import PDFCore
 import Schema
 
 public extension PDF.Tools {
-    @Tool("pdf_inspect_region")
+    @Tool("inspect_region")
     struct InspectRegion: Tool {
         @JSONSchema
         public struct Input: HashableSource {

@@ -26,8 +26,8 @@ struct AgenticPDFTests {
         let text = PDF.Tools.ReadText()
         let search = PDF.Tools.SearchText()
         let region = PDF.Tools.InspectRegion()
-        guard PDF.Tools.ReadDocument.definition.identifier.rawValue == "pdf_read_document",
-              PDF.Tools.InspectPage.definition.identifier.rawValue == "pdf_inspect_page" else {
+        guard PDF.Tools.ReadDocument.definition.identifier.rawValue == "pdf_tool_read_document",
+              PDF.Tools.InspectPage.definition.identifier.rawValue == "pdf_tool_inspect_page" else {
             throw Failure.assertion("tool identifiers")
         }
         let context = try fixtureContext(root: directory, capabilities: [.read])
@@ -61,7 +61,7 @@ struct AgenticPDFTests {
         let summary = try await read.call(decodedRead, in: context)
         guard summary.pageCount == 1, summary.pages.count == 1,
               summary.pages[0].nativeLines > 0 else { throw Failure.assertion("native PDF") }
-        guard PDF.Tools.ReadText.definition.identifier.rawValue == "pdf_read_text" else {
+        guard PDF.Tools.ReadText.definition.identifier.rawValue == "pdf_tool_read_text" else {
             throw Failure.assertion("read text tool identifier")
         }
         let textPreflight = try await text.preflight(.init(
@@ -120,7 +120,7 @@ struct AgenticPDFTests {
             throw Failure.assertion("read text OCR preflight")
         }
 
-        guard PDF.Tools.SearchText.definition.identifier.rawValue == "pdf_search_text" else {
+        guard PDF.Tools.SearchText.definition.identifier.rawValue == "pdf_tool_search_text" else {
             throw Failure.assertion("search tool identifier")
         }
         let searchPreflight = try await search.preflight(.init(
@@ -290,7 +290,7 @@ struct AgenticPDFTests {
         } catch { denied = true }
         guard denied else { throw Failure.assertion("read grant required") }
 
-        guard PDF.Tools.InspectRegion.definition.identifier.rawValue == "pdf_inspect_region" else {
+        guard PDF.Tools.InspectRegion.definition.identifier.rawValue == "pdf_tool_inspect_region" else {
             throw Failure.assertion("region tool identifier")
         }
         let regionPreflight = try await region.preflight(.init(
@@ -368,7 +368,7 @@ struct AgenticPDFTests {
 
         try testCompleteLineEvidence()
 
-        guard PDF.Tools.VerifyTextEvidence.definition.identifier.rawValue == "pdf_verify_text_evidence" else {
+        guard PDF.Tools.VerifyTextEvidence.definition.identifier.rawValue == "pdf_tool_verify_text_evidence" else {
             throw Failure.assertion("verify evidence tool identifier")
         }
         guard let checkedLine = inspected.lines.first,

@@ -1,4 +1,4 @@
 import Agentic
 
-@Domain
+@Domain("pdf")
 public enum PDF {}

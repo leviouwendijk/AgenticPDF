@@ -7,7 +7,7 @@ import Schema
 
 public extension PDF.Tools {
     /// Resolves purported PDF line quotations against the currently authorized source.
-    @Tool("pdf_verify_text_evidence")
+    @Tool("verify_text_evidence")
     struct VerifyTextEvidence: Tool {
         @JSONSchema
         public struct Input: HashableSource {

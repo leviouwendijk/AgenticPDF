@@ -7,7 +7,7 @@ import PDFCore
 import Schema
 
 public extension PDF.Tools {
-    @Tool("pdf_search_text")
+    @Tool("search_text")
     struct SearchText: Tool {
         @JSONSchema
         public struct Input: HashableSource {

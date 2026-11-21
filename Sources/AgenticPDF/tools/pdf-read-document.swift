@@ -6,7 +6,7 @@ import PDFCore
 import Schema
 
 public extension PDF.Tools {
-    @Tool("pdf_read_document")
+    @Tool("read_document")
     struct ReadDocument: Tool {
         @JSONSchema
         public struct Input: HashableSource {
