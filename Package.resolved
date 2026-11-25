@@ -130,7 +130,7 @@
     {
       "identity" : "guidelines",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Guidelines.git",
+      "location" : "https://github.com/swift-tooling/Guidelines.git",
       "state" : {
         "branch" : "master",
         "revision" : "1c8f590184daecad0488b1bb2514070b0f11491c"
@@ -139,7 +139,7 @@
     {
       "identity" : "guidelinessearch",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/GuidelinesSearch.git",
+      "location" : "https://github.com/swift-tooling/GuidelinesSearch.git",
       "state" : {
         "branch" : "master",
         "revision" : "791d4382cfb7434b265398843167b5d9c10060c5"
@@ -373,7 +373,7 @@
     {
       "identity" : "testflows",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/TestFlows.git",
+      "location" : "https://github.com/swift-tooling/TestFlows.git",
       "state" : {
         "branch" : "master",
         "revision" : "be40ad2a6a45d56b0065cdf7754b9709ef960b09"
@@ -382,7 +382,7 @@
     {
       "identity" : "testing",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Testing.git",
+      "location" : "https://github.com/swift-tooling/Testing.git",
       "state" : {
         "branch" : "master",
         "revision" : "105eecb68c3db99119dff3afeb846b7923abbc85"
