@@ -8,7 +8,7 @@ let package = Package(
         .executable(name: "t_agentic_pdf", targets: ["AgenticPDFTests"])
     ],
     dependencies: [
-        .package(url: "https://github.com/leviouwendijk/Agentic.git", branch: "master"),
+        .package(url: "https://github.com/swift-agentic/Agentic.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/PDF.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Workspace.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Path.git", branch: "master"),
