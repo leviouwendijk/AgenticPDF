@@ -76,7 +76,7 @@
     {
       "identity" : "dsl",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/DSL.git",
+      "location" : "https://github.com/swift-dsl/DSL.git",
       "state" : {
         "branch" : "master",
         "revision" : "30ec6798f883b91f697d060bb001e0e4f7a09225"
@@ -121,7 +121,7 @@
     {
       "identity" : "grammar",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Grammar.git",
+      "location" : "https://github.com/swift-langs/Grammar.git",
       "state" : {
         "branch" : "master",
         "revision" : "08f50f8f423555846d1c349181f2a8e79a6d663c"
@@ -166,7 +166,7 @@
     {
       "identity" : "lexing",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Lexing.git",
+      "location" : "https://github.com/swift-langs/Lexing.git",
       "state" : {
         "branch" : "master",
         "revision" : "e24d4e4844db87667eb99809b9e9a060f226ec2d"
@@ -220,7 +220,7 @@
     {
       "identity" : "parsing",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Parsing.git",
+      "location" : "https://github.com/swift-langs/Parsing.git",
       "state" : {
         "branch" : "master",
         "revision" : "abaa4f5655579dea0830dd500825591ca702a822"
@@ -355,7 +355,7 @@
     {
       "identity" : "syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Syntax.git",
+      "location" : "https://github.com/swift-langs/Syntax.git",
       "state" : {
         "branch" : "master",
         "revision" : "2e0e85f68411c88246fcdf19c2c237c6e7a76bd4"
@@ -391,7 +391,7 @@
     {
       "identity" : "tokens",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Tokens.git",
+      "location" : "https://github.com/swift-langs/Tokens.git",
       "state" : {
         "branch" : "master",
         "revision" : "6c36483226bfaecd544b8faba1f86215b3e9dce5"
