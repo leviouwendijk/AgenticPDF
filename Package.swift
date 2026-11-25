@@ -10,11 +10,11 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/swift-agentic/Agentic.git", branch: "master"),
         .package(url: "https://github.com/swift-agentic/AgenticIO.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/PDF.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/Workspace.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/Path.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/Schema.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/Macros.git", branch: "master")
+        .package(url: "https://github.com/swift-lco/PDF.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Workspace.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Path.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Schema.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Macros.git", branch: "master")
     ],
     targets: [
         .target(name: "AgenticPDF", dependencies: [
