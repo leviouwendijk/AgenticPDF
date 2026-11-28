@@ -9,7 +9,7 @@ enum PDFSourceAccess {
     static func preflight(
         rootID: PathAccessRootIdentifier?,
         path: String,
-        context: ToolContext,
+        context: CapabilityContext,
         definition: ToolDefinition,
         identifier: String
     ) throws -> ToolPreflight {
@@ -52,7 +52,7 @@ enum PDFSourceAccess {
         rootID: PathAccessRootIdentifier?,
         path: String,
         recognition: Bool,
-        context: ToolContext,
+        context: CapabilityContext,
         identifier: String
     ) throws -> PDFDocumentSnapshot {
         let selectedRoot = rootID ?? context.workspace?.rootIdentifier ?? .project

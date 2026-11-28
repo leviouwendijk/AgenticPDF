@@ -84,7 +84,7 @@ public extension PDF.Tools {
             }
         }
 
-        public func preflight(_ input: Input, in context: ToolContext) async throws -> ToolPreflight {
+        public func preflight(_ input: Input, in context: CapabilityContext) async throws -> ToolPreflight {
             try Self.checkInput(input)
             return try PDFSourceAccess.preflight(
                 rootID: input.rootID,
@@ -95,7 +95,7 @@ public extension PDF.Tools {
             )
         }
 
-        public func call(_ input: Input, in context: ToolContext) async throws -> Output {
+        public func call(_ input: Input, in context: CapabilityContext) async throws -> Output {
             try Self.checkInput(input)
             let document = try PDFSourceAccess.read(
                 rootID: input.rootID,

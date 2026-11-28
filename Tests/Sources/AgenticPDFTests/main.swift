@@ -510,7 +510,7 @@ struct AgenticPDFTests {
         root: URL,
         capabilities: Set<WorkspaceCapability>,
         rootID: PathAccessRootIdentifier = .project
-    ) throws -> ToolContext {
+    ) throws -> CapabilityContext {
         let installed = PathAccessRoot(
             id: rootID,
             label: "Synthetic PDF workspace",
@@ -523,7 +523,7 @@ struct AgenticPDFTests {
             capabilities: capabilities
         )
         let workspace = try Workspace(root: installed, grants: [grant])
-        return ToolContext(workspace: try workspace.context(
+        return CapabilityContext(workspace: try workspace.context(
             execution: .init(io: .blocking, mutations: .immediate)
         ))
     }

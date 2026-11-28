@@ -74,7 +74,7 @@ public extension PDF.Tools {
         public static let risk: ActionRisk = .observe
         public init() {}
 
-        public func preflight(_ input: Input, in context: ToolContext) async throws -> ToolPreflight {
+        public func preflight(_ input: Input, in context: CapabilityContext) async throws -> ToolPreflight {
             try Self.checkPagination(input)
             return try PDFSourceAccess.preflight(
                 rootID: input.rootID,
@@ -85,7 +85,7 @@ public extension PDF.Tools {
             )
         }
 
-        public func call(_ input: Input, in context: ToolContext) async throws -> Output {
+        public func call(_ input: Input, in context: CapabilityContext) async throws -> Output {
             try Self.checkPagination(input)
             let document = try PDFSourceAccess.read(
                 rootID: input.rootID,
